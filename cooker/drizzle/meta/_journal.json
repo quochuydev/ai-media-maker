@@ -8,6 +8,13 @@
       "when": 1772591639826,
       "tag": "0000_windy_ultimo",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1774437504248,
+      "tag": "0001_amazing_richard_fisk",
+      "breakpoints": true
     }
   ]
 }
