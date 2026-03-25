@@ -4,26 +4,25 @@ import { config } from "@/lib/config";
 export const metadata: Metadata = {
   title: "Playground",
   description:
-    "Look up definitions for any keyword using AI. Get instant, accurate definitions powered by advanced language models.",
+    "Generate AI-powered images in bulk. Enter prompts and get high-quality images generated instantly.",
   keywords: [
-    "definition",
+    "image generation",
+    "AI images",
     "playground",
-    "AI definition",
-    "lookup",
-    "dictionary",
-    "what is",
+    "bulk generation",
+    "text to image",
   ],
   openGraph: {
     title: `Playground | ${config.site.name}`,
     description:
-      "Look up definitions for any keyword using AI. Get instant, accurate definitions.",
+      "Generate AI-powered images in bulk. Enter prompts and get high-quality images instantly.",
     url: `${config.site.url}/playground`,
   },
   twitter: {
     card: "summary_large_image",
     title: `Playground | ${config.site.name}`,
     description:
-      "Look up definitions for any keyword using AI. Get instant, accurate definitions.",
+      "Generate AI-powered images in bulk. Enter prompts and get high-quality images instantly.",
   },
 };
 

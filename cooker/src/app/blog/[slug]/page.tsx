@@ -5,16 +5,16 @@ import { notFound } from "next/navigation";
 import { config } from "@/lib/config";
 
 const blogPosts: Record<string, { title: string; content: string; category: string; date: string; image: string }> = {
-  "introducing-what-is": {
+  "introducing-ai-media-maker": {
     title: `Introducing ${config.site.name}`,
     content: `
-      ${config.site.name} brings together the power of advanced language models with a simple, developer-friendly API.
+      ${config.site.name} brings together the power of advanced AI models with a simple, developer-friendly platform.
 
       With ${config.site.name}, you can:
-      - Get instant AI-powered definitions for any keyword
-      - Integrate definition lookups into your applications
-      - Use our credit-based billing system
-      - Access comprehensive documentation and SDKs
+      - Generate stunning AI images from text prompts
+      - Create up to 10 images at once with bulk generation
+      - Store images securely on Cloudflare R2
+      - Integrate image generation into your apps via our API
 
       Get started today by checking out our documentation and playground.
     `,
@@ -22,16 +22,16 @@ const blogPosts: Record<string, { title: string; content: string; category: stri
     date: "2024-01-15",
     image: `https://placehold.co/800x400/1a1a2e/ffffff?text=${encodeURIComponent(config.site.name)}`,
   },
-  "playground-demo": {
-    title: "Playground Demo",
+  "ai-image-generation-demo": {
+    title: "Image Generation Demo",
     content: `
       Our playground demo showcases the capabilities of ${config.site.name}.
 
       The playground provides:
-      - Instant keyword definition lookups
-      - AI-powered accurate responses
+      - Bulk image generation from text prompts
+      - Real-time progress tracking
+      - Cloud-stored results with instant download
       - Simple, intuitive interface
-      - Real-time results
 
       Try it out in your browser — no setup required.
     `,
@@ -45,11 +45,11 @@ const blogPosts: Record<string, { title: string; content: string; category: stri
       We're excited to announce the stable release of ${config.site.name} version 1.0!
 
       This release includes:
-      - Stable Cloud API for definition lookups
+      - Bulk AI image generation (up to 10 per batch)
+      - Cloudflare R2 cloud storage
       - Credit-based billing system
       - Interactive playground
       - Comprehensive documentation
-      - TypeScript support
 
       Thank you to all our contributors and early adopters.
     `,

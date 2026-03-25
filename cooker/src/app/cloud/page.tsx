@@ -9,11 +9,11 @@ export default function CloudLandingPage() {
       <main className="flex-1">
         <section className="mx-auto max-w-[1080px] px-4 py-8 text-center sm:py-12">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-            what-is Cloud
+            AI Media Maker Cloud
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Access powerful AI image generation APIs. Generate images
+            programmatically with simple REST calls and manage everything from your dashboard.
           </p>
 
           <div className="mt-10">
@@ -36,8 +36,8 @@ export default function CloudLandingPage() {
                 </div>
                 <h3 className="font-semibold">Lightning Fast</h3>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-                  enim ad minim veniam.
+                  Images generated in seconds with background processing for
+                  bulk requests.
                 </p>
               </div>
               <div className="text-center">
@@ -46,8 +46,8 @@ export default function CloudLandingPage() {
                 </div>
                 <h3 className="font-semibold">Secure by Default</h3>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis
-                  nostrud exercitation.
+                  API keys hashed with SHA-256. Images stored securely on
+                  Cloudflare R2. All traffic encrypted.
                 </p>
               </div>
               <div className="text-center">
@@ -56,8 +56,8 @@ export default function CloudLandingPage() {
                 </div>
                 <h3 className="font-semibold">Scale Effortlessly</h3>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-                  aute irure dolor.
+                  Credit-based billing scales with your usage. Generate one
+                  image or thousands via the API.
                 </p>
               </div>
             </div>

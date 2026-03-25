@@ -13,20 +13,19 @@ export default function AboutUsPage() {
           </h1>
           <div className="mt-8 space-y-6 text-muted-foreground">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco.
+              AI Media Maker is an AI-powered media generation platform that
+              lets you create stunning images from text prompts. We provide
+              bulk generation, cloud storage, and developer APIs.
             </p>
             <p>
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-              cupidatat non proident, sunt in culpa qui officia deserunt mollit.
+              Our mission is to make AI image generation accessible to
+              everyone — from individual creators to large teams building
+              media-rich applications.
             </p>
             <p>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt explicabo.
+              Built on advanced AI models, AI Media Maker handles everything
+              from prompt processing to secure cloud storage, so you can focus
+              on creating.
             </p>
           </div>
 
@@ -34,20 +33,19 @@ export default function AboutUsPage() {
             <h2 className="mb-6 text-2xl font-bold">Business Opportunities</h2>
             <div className="space-y-4 text-muted-foreground">
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo
-                enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-                fugit, sed quia consequuntur magni dolores eos qui ratione
-                voluptatem sequi nesciunt.
+                We partner with businesses to integrate AI image generation
+                into their products and workflows. Whether you need custom
+                solutions or enterprise-scale generation, we can help.
               </p>
               <div className="rounded-lg border border-border bg-accent/50 p-6">
                 <h3 className="mb-3 font-semibold text-foreground">
                   What we offer:
                 </h3>
                 <ul className="list-inside list-disc space-y-2">
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Consectetur adipiscing elit</li>
-                  <li>Sed do eiusmod tempor</li>
-                  <li>Ut labore et dolore magna</li>
+                  <li>Bulk AI image generation via API</li>
+                  <li>Secure cloud storage on Cloudflare R2</li>
+                  <li>Custom integration and consulting</li>
+                  <li>Enterprise volume pricing and SLAs</li>
                 </ul>
               </div>
             </div>

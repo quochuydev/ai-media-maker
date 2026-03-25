@@ -7,7 +7,7 @@ import { useState } from "react";
 export default function FirebasePage() {
   const [token, setToken] = useState("");
   const [title, setTitle] = useState("Test Notification");
-  const [body, setBody] = useState("Hello from what-is!");
+  const [body, setBody] = useState("Hello from AI Media Maker!");
   const [status, setStatus] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [deviceToken, setDeviceToken] = useState<string | null>(null);

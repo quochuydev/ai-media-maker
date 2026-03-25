@@ -19,7 +19,7 @@ export default function TermsPage() {
             <section>
               <h2 className="text-xl font-semibold">1. Acceptance of Terms</h2>
               <p className="mt-3 text-muted-foreground">
-                By accessing or using what-is services, you agree to be bound by
+                By accessing or using AI Media Maker services, you agree to be bound by
                 these Terms of Service. If you do not agree to these terms,
                 please do not use our services.
               </p>
@@ -30,9 +30,9 @@ export default function TermsPage() {
                 2. Description of Service
               </h2>
               <p className="mt-3 text-muted-foreground">
-                what-is provides AI-powered definition lookup APIs and tools for
-                developers. Our services include cloud-based APIs, SDKs, and
-                documentation.
+                AI Media Maker provides AI-powered image generation APIs and tools for
+                creators and developers. Our services include bulk image generation,
+                cloud storage, and developer APIs.
               </p>
             </section>
 
@@ -48,7 +48,7 @@ export default function TermsPage() {
             <section>
               <h2 className="text-xl font-semibold">4. Acceptable Use</h2>
               <p className="mt-3 text-muted-foreground">
-                You agree not to use what-is services for any unlawful purpose
+                You agree not to use AI Media Maker services for any unlawful purpose
                 or in any way that could damage, disable, or impair our
                 services.
               </p>
@@ -59,8 +59,8 @@ export default function TermsPage() {
                 5. Intellectual Property
               </h2>
               <p className="mt-3 text-muted-foreground">
-                what-is and its original content, features, and functionality
-                are owned by what-is and are protected by international
+                AI Media Maker and its original content, features, and functionality
+                are owned by AI Media Maker and are protected by international
                 copyright, trademark, and other intellectual property laws.
               </p>
             </section>
@@ -70,7 +70,7 @@ export default function TermsPage() {
                 6. Limitation of Liability
               </h2>
               <p className="mt-3 text-muted-foreground">
-                what-is shall not be liable for any indirect, incidental,
+                AI Media Maker shall not be liable for any indirect, incidental,
                 special, consequential, or punitive damages resulting from your
                 use or inability to use the service.
               </p>

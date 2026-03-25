@@ -3,7 +3,7 @@ import { config } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: `${config.site.name} Terms of Service. Read our terms and conditions for using our AI-powered definition services.`,
+  description: `${config.site.name} Terms of Service. Read our terms and conditions for using our AI image generation services.`,
   keywords: ["terms of service", "terms", "conditions", "legal"],
   openGraph: {
     title: `Terms of Service | ${config.site.name}`,

@@ -5,10 +5,10 @@ import { config } from "@/lib/config";
 
 // Placeholder images for the carousel (970x700 aspect ratio)
 const carouselImages = [
-  "https://placehold.co/970x700/1a1a2e/ffffff?text=AI+Definitions",
-  "https://placehold.co/970x700/16213e/ffffff?text=Instant+Lookup",
-  "https://placehold.co/970x700/0f3460/ffffff?text=Any+Topic",
-  "https://placehold.co/970x700/533483/ffffff?text=Accurate+Results",
+  "https://placehold.co/970x700/1a1a2e/ffffff?text=AI+Images",
+  "https://placehold.co/970x700/16213e/ffffff?text=Bulk+Generation",
+  "https://placehold.co/970x700/0f3460/ffffff?text=Text+to+Image",
+  "https://placehold.co/970x700/533483/ffffff?text=Cloud+Storage",
   "https://placehold.co/970x700/3b82f6/ffffff?text=Developer+API",
 ];
 
@@ -21,11 +21,11 @@ export default function Home() {
         {/* Hero Section */}
         <section className="mx-auto max-w-[1080px] px-4 py-8 text-center sm:py-12">
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
-            Definitions, instantly
+            AI media, instantly
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Generate stunning AI images from text prompts. Bulk generation with
+            cloud storage, powered by advanced AI models.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
@@ -58,7 +58,7 @@ export default function Home() {
                 1M+
               </div>
               <div className="mt-1 text-sm text-muted-foreground">
-                Definitions Served
+                Images Generated
               </div>
             </div>
             <div className="text-center">
@@ -89,11 +89,11 @@ export default function Home() {
         {/* Features Section */}
         <section className="mx-auto max-w-[1080px] px-4 py-8 sm:py-12">
           <h2 className="text-center text-3xl font-bold tracking-tight sm:text-4xl">
-            Built for developers
+            Built for creators
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad
-            minim veniam, quis nostrud exercitation.
+            Everything you need to generate AI images at scale, from a simple
+            playground to a full-featured API.
           </p>
 
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -105,8 +105,8 @@ export default function Home() {
               </div>
               <h3 className="text-lg font-semibold">AI-Powered</h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt.
+                Generate high-quality images from text prompts using advanced AI
+                models with fine-tuned parameters.
               </p>
             </div>
 
@@ -116,10 +116,10 @@ export default function Home() {
                   &#9889;
                 </span>
               </div>
-              <h3 className="text-lg font-semibold">Lightning Fast</h3>
+              <h3 className="text-lg font-semibold">Bulk Generation</h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim
-                ad minim veniam.
+                Generate up to 10 images at once with different prompts.
+                Background processing keeps you productive.
               </p>
             </div>
 
@@ -131,8 +131,8 @@ export default function Home() {
               </div>
               <h3 className="text-lg font-semibold">Developer API</h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis
-                nostrud exercitation ullamco.
+                Integrate image generation into your apps with our REST API.
+                Simple authentication with API keys.
               </p>
             </div>
 
@@ -142,10 +142,10 @@ export default function Home() {
                   &#127757;
                 </span>
               </div>
-              <h3 className="text-lg font-semibold">Any Topic</h3>
+              <h3 className="text-lg font-semibold">Cloud Storage</h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-                aute irure dolor in reprehenderit.
+                Generated images are stored securely on Cloudflare R2 and
+                available for instant download.
               </p>
             </div>
 
@@ -157,8 +157,8 @@ export default function Home() {
               </div>
               <h3 className="text-lg font-semibold">Secure</h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Excepteur sint occaecat cupidatat.
+                API keys are hashed with SHA-256. All traffic encrypted. Your
+                images are private by default.
               </p>
             </div>
 
@@ -170,8 +170,8 @@ export default function Home() {
               </div>
               <h3 className="text-lg font-semibold">Scalable</h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non
-                proident, sunt in culpa qui.
+                Credit-based system scales with your needs. From a single image
+                to thousands via the API.
               </p>
             </div>
           </div>
@@ -184,8 +184,8 @@ export default function Home() {
               Ready to get started?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Start
-              looking up definitions in seconds.
+              Start generating AI images in seconds. No setup required — just
+              sign in and enter your prompts.
             </p>
             <div className="mt-8">
               <a

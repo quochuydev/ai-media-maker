@@ -51,4 +51,4 @@ Cloud API
 
 ## Domain
 
-`https://example.com`
+`https://maker.cappuai.com`

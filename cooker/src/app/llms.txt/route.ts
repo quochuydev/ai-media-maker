@@ -1,15 +1,16 @@
 import { config } from "@/lib/config";
 
 export async function GET() {
-  const { name, url, email } = config.site;
+  const { name, email } = config.site;
+  const url = config.app.url;
 
   const content = `# ${name}
 
-> AI-powered definition lookup service. Get instant, accurate definitions for any keyword.
+> AI-powered media generation platform. Generate stunning images from text prompts with bulk generation and cloud storage.
 
 ## Overview
 
-${name} is an AI-powered definition lookup service that provides instant, accurate definitions for any keyword using advanced language models.
+${name} is an AI-powered image generation platform that lets you create high-quality images from text prompts. Supports bulk generation of up to 10 images per batch with secure cloud storage.
 
 ## Website
 
@@ -17,9 +18,9 @@ ${url}
 
 ## Features
 
-- **AI-Powered Definitions**: Get accurate definitions using advanced language models
-- **Instant Results**: Definitions generated in seconds
-- **Cloud API**: Integrate definition lookups into your applications
+- **AI Image Generation**: Generate high-quality images from text prompts using advanced AI models
+- **Bulk Generation**: Create up to 10 images at once with different prompts
+- **Cloud Storage**: Images stored securely on Cloudflare R2 with instant access
 - **Credit-based Billing**: Pay only for what you use
 
 ## Pages
@@ -51,7 +52,7 @@ Credit-based pricing:
 - Scale: $20 for 30 credits
 
 ### Playground (/playground)
-Interactive demo where users can try definition lookups. Enter a keyword and get an instant AI-powered definition. Requires sign-in and uses credits (1 credit per lookup).
+Interactive demo where users can generate AI images. Enter prompts and generate up to 10 images at once. Requires sign-in and uses credits (1 credit per image).
 
 ### Cloud (/cloud)
 Landing page for ${name} Cloud services.
@@ -82,15 +83,16 @@ Authenticated area for managing cloud services:
 ## Technical Stack
 
 - **Framework**: Next.js (App Router)
-- **AI**: OpenAI-compatible API
+- **AI**: HuggingFace Gradio (image generation)
 - **Authentication**: Clerk
 - **Payments**: PayPal
+- **Storage**: Cloudflare R2
 - **Documentation**: Fumadocs
 - **Styling**: Tailwind CSS
 
 ## Keywords
 
-definition, AI, lookup, dictionary, what is, meaning, explanation, knowledge
+AI, image generation, text to image, media maker, bulk generation, cloud storage
 
 ## Contact
 

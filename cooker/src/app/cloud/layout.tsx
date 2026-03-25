@@ -3,22 +3,22 @@ import { config } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Cloud",
-  description: `Access powerful AI definition APIs from ${config.site.name} Cloud. Build applications with instant definition lookups.`,
+  description: `Access powerful AI image generation APIs from ${config.site.name} Cloud. Build applications with bulk image generation.`,
   keywords: [
     "cloud API",
-    "definition API",
+    "image generation API",
     "cloud service",
     "API access",
   ],
   openGraph: {
     title: `Cloud | ${config.site.name}`,
-    description: `Access powerful AI definition APIs from ${config.site.name} Cloud.`,
+    description: `Access powerful AI image generation APIs from ${config.site.name} Cloud.`,
     url: `${config.site.url}/cloud`,
   },
   twitter: {
     card: "summary_large_image",
     title: `Cloud | ${config.site.name}`,
-    description: `Access powerful AI definition APIs from ${config.site.name} Cloud.`,
+    description: `Access powerful AI image generation APIs from ${config.site.name} Cloud.`,
   },
 };
 

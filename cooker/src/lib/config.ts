@@ -30,20 +30,35 @@ export const config = {
   },
 
   app: {
-    url: "https://what-is.cappuai.com",
+    url: "https://maker.cappuai.com",
   },
 
   site: {
-    name: "what-is",
-    tagline: "AI-Powered Definition Lookup",
-    description: "Get instant, AI-powered definitions for any keyword. Simple, fast, and accurate.",
-    github: "https://github.com/quochuydev/what-is",
+    name: "AI Media Maker",
+    tagline: "AI-Powered Media Generation",
+    description: "Generate stunning AI images and media from text prompts. Bulk generation with cloud storage.",
+    url: "https://maker.cappuai.com",
+    github: "https://github.com/quochuydev/ai-media-maker",
     email: "quochuy.dev@gmail.com",
+    analyticsId: process.env.NEXT_PUBLIC_GA_ID || "",
   },
 
   firebase: {
     projectId: process.env.FIREBASE_PROJECT_ID || "",
     clientEmail: process.env.FIREBASE_CLIENT_EMAIL || "",
     privateKey: (process.env.FIREBASE_PRIVATE_KEY || "").replace(/\\n/g, "\n"),
+  },
+
+  r2: {
+    accountId: process.env.R2_ACCOUNT_ID || "",
+    accessKeyId: process.env.R2_ACCESS_KEY_ID || "",
+    secretAccessKey: process.env.R2_SECRET_ACCESS_KEY || "",
+    bucketName: process.env.R2_BUCKET_NAME || "",
+    publicUrl: process.env.R2_PUBLIC_URL || "",
+  },
+
+  image: {
+    maxBulkImages: 10,
+    creditsPerImage: 1,
   },
 } as const;

@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
     const messageId = await sendNotification(
       token,
       title || "Test Notification",
-      body || "This is a test notification from what-is"
+      body || "This is a test notification from AI Media Maker"
     );
 
     if (!messageId) {

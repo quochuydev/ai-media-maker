@@ -3,7 +3,7 @@ import { config } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Blog",
-  description: `Latest news, tutorials, and updates from ${config.site.name}. Learn about AI-powered definitions and integration guides.`,
+  description: `Latest news, tutorials, and updates from ${config.site.name}. Learn about AI image generation and integration guides.`,
   keywords: [
     "blog",
     "news",

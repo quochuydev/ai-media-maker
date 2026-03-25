@@ -6,22 +6,22 @@ import { config } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Documentation",
-  description: `${config.site.name} documentation. Learn how to integrate AI-powered definition lookups into your applications.`,
+  description: `${config.site.name} documentation. Learn how to integrate AI image generation into your applications.`,
   keywords: [
     "documentation",
     "docs",
     "API documentation",
-    "integration guide",
+    "image generation guide",
   ],
   openGraph: {
     title: `Documentation | ${config.site.name}`,
-    description: `${config.site.name} documentation. Learn how to integrate AI-powered definitions into your apps.`,
+    description: `${config.site.name} documentation. Learn how to integrate AI image generation into your apps.`,
     url: `${config.site.url}/docs`,
   },
   twitter: {
     card: "summary_large_image",
     title: `Documentation | ${config.site.name}`,
-    description: `${config.site.name} documentation. Learn how to integrate AI-powered definitions into your apps.`,
+    description: `${config.site.name} documentation. Learn how to integrate AI image generation into your apps.`,
   },
 };
 

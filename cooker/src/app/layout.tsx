@@ -21,16 +21,15 @@ export const metadata: Metadata = {
     default: `${config.site.name} - ${config.site.tagline}`,
     template: `%s | ${config.site.name}`,
   },
-  description: `${config.site.description} definitions at your fingertips.`,
+  description: config.site.description,
   keywords: [
-    "definition",
     "AI",
-    "lookup",
-    "dictionary",
-    "what is",
-    "meaning",
-    "explanation",
-    "knowledge",
+    "image generation",
+    "media maker",
+    "text to image",
+    "bulk generation",
+    "AI images",
+    "cloud storage",
   ],
   metadataBase: new URL(config.site.url),
   openGraph: {
@@ -38,13 +37,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: config.site.url,
     title: `${config.site.name} - ${config.site.tagline}`,
-    description: `${config.site.description} definitions at your fingertips.`,
+    description: config.site.description,
     siteName: config.site.name,
   },
   twitter: {
     card: "summary_large_image",
     title: `${config.site.name} - ${config.site.tagline}`,
-    description: `${config.site.description} definitions at your fingertips.`,
+    description: config.site.description,
   },
   robots: {
     index: true,
@@ -77,7 +76,7 @@ export default function RootLayout({
                 name: config.site.name,
                 url: config.site.url,
                 description:
-                  "AI-powered definition lookup service. Get instant, accurate definitions for any keyword.",
+                  "AI-powered media generation platform. Generate stunning images from text prompts with cloud storage.",
                 sameAs: [],
               }),
             }}

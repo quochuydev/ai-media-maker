@@ -14,19 +14,19 @@ const categories = [
 
 const blogPosts = [
   {
-    slug: "introducing-what-is",
-    title: "Introducing what-is",
+    slug: "introducing-ai-media-maker",
+    title: "Introducing AI Media Maker",
     excerpt:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Generate stunning AI images from text prompts with bulk generation and cloud storage.",
     category: "announcement",
     date: "2024-01-15",
-    image: "https://placehold.co/400x300/1a1a2e/ffffff?text=what-is",
+    image: "https://placehold.co/400x300/1a1a2e/ffffff?text=AI+Media+Maker",
   },
   {
-    slug: "ai-definitions-demo",
-    title: "AI Definitions Demo",
+    slug: "ai-image-generation-demo",
+    title: "AI Image Generation Demo",
     excerpt:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "See how AI Media Maker generates images from text prompts with our interactive playground.",
     category: "showcase",
     date: "2024-01-10",
     image: "https://placehold.co/400x300/16213e/ffffff?text=Demo",
@@ -35,7 +35,7 @@ const blogPosts = [
     slug: "v1-release",
     title: "Version 1.0 Released",
     excerpt:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "AI Media Maker 1.0 is here with bulk generation, cloud storage, and developer API.",
     category: "release",
     date: "2024-01-05",
     image: "https://placehold.co/400x300/0f3460/ffffff?text=v1.0",

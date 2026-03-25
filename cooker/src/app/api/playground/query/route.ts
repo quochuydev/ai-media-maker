@@ -96,7 +96,7 @@ export async function POST(request: NextRequest) {
       userId: user.id,
       amount: -1,
       type: "usage",
-      description: `Definition lookup: ${trimmedKeyword}`,
+      description: `Playground query: ${trimmedKeyword}`,
     });
 
     // Get updated credits

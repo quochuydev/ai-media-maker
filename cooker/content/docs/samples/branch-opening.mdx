@@ -1,40 +1,48 @@
 ---
 title: Sample Project 1
-description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+description: Generate AI images programmatically using the AI Media Maker API.
 ---
 
 # Sample Project 1
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Generate AI images programmatically using the AI Media Maker Cloud API.
 
 ## Overview
 
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+This sample demonstrates how to use the AI Media Maker API to generate images from text prompts in a Node.js application.
 
 ## Demo
 
-See the live demo at [example.com/playground](/playground).
+See the live demo at [maker.cappuai.com/playground](/playground).
 
 ## How It Works
 
-1. **Lorem Ipsum** - Dolor sit amet consectetur adipiscing elit
-2. **Sed Do** - Eiusmod tempor incididunt ut labore
-3. **Ut Enim** - Ad minim veniam quis nostrud
+1. **Authenticate** - Use your API key to authenticate requests
+2. **Submit Prompts** - Send an array of text prompts to the API
+3. **Poll for Results** - Check the job status until images are ready
 
 ## Code Example
 
 ```javascript
-import { WhatIs } from '@what-is/sdk';
+const API_KEY = process.env.AI_MEDIA_MAKER_API_KEY;
 
-const client = new WhatIs({
-  apiKey: process.env.WHAT_IS_API_KEY
+// Submit prompts for image generation
+const response = await fetch('https://maker.cappuai.com/api/playground/images', {
+  method: 'POST',
+  headers: {
+    'Authorization': `Bearer ${API_KEY}`,
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    prompts: ['A sunset over the ocean', 'A futuristic cityscape']
+  }),
 });
 
-const result = await client.define('photosynthesis');
-console.log(result.definition);
+const { jobId } = await response.json();
+console.log('Job started:', jobId);
 ```
 
 ## Resources
 
-- [Source Code](https://github.com/quochuydev/what-is-samples)
+- [Source Code](https://github.com/quochuydev/ai-media-maker-samples)
 - [Video Tutorial](/docs/samples/video-introduction)

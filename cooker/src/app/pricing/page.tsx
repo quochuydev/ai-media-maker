@@ -8,7 +8,7 @@ const creditPackages = [
     credits: 1,
     price: "$1",
     perCredit: "$1.00",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+    description: "Perfect for trying out AI image generation.",
     highlighted: false,
   },
   {
@@ -16,7 +16,7 @@ const creditPackages = [
     credits: 6,
     price: "$5",
     perCredit: "$0.83",
-    description: "Sed do eiusmod tempor incididunt ut labore.",
+    description: "Best value for regular image generation needs.",
     highlighted: true,
   },
   {
@@ -24,7 +24,7 @@ const creditPackages = [
     credits: 30,
     price: "$20",
     perCredit: "$0.67",
-    description: "Ut enim ad minim veniam, quis nostrud exercitation.",
+    description: "For teams and heavy usage with the best per-image price.",
     highlighted: false,
   },
 ];
@@ -40,8 +40,8 @@ export default function PricingPage() {
               Simple, transparent pricing
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. No
-              subscriptions, no monthly fees.
+              Pay only for the images you generate. No subscriptions, no
+              monthly fees.
             </p>
           </div>
 
@@ -73,7 +73,7 @@ export default function PricingPage() {
                 </div>
 
                 <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
-                  <li>1 credit = 1 definition lookup</li>
+                  <li>1 credit = 1 image generation</li>
                   <li>Credits never expire</li>
                   <li>No monthly fees</li>
                 </ul>
@@ -96,8 +96,8 @@ export default function PricingPage() {
           <div className="mt-16 rounded-2xl border border-border p-8 text-center">
             <h2 className="text-2xl font-bold">Enterprise</h2>
             <p className="mx-auto mt-2 max-w-xl text-muted-foreground">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Need
-              volume discounts or custom SLAs?
+              Need volume discounts, custom SLAs, or dedicated infrastructure
+              for high-volume image generation?
             </p>
             <Link
               href="/about-us"
@@ -110,7 +110,7 @@ export default function PricingPage() {
           {/* Free Tier Info */}
           <div className="mt-8 text-center text-sm text-muted-foreground">
             <p>
-              Lorem ipsum dolor sit amet. The{" "}
+              New users get 3 free credits to try it out. The{" "}
               <Link href="/playground" className="underline">
                 Playground
               </Link>{" "}

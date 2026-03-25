@@ -125,6 +125,56 @@ export const creditTransactions = pgTable(
   ]
 );
 
+// Image job status enum
+export const imageJobStatusEnum = pgEnum("image_job_status", [
+  "pending",
+  "processing",
+  "completed",
+  "failed",
+]);
+
+// Image Jobs table - tracks bulk image generation requests
+export const imageJobs = pgTable(
+  "image_jobs",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    totalImages: integer("total_images").notNull(),
+    completedImages: integer("completed_images").notNull().default(0),
+    failedImages: integer("failed_images").notNull().default(0),
+    status: imageJobStatusEnum("status").notNull().default("pending"),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
+    updatedAt: timestamp("updated_at")
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (table) => [index("image_jobs_user_id_idx").on(table.userId)]
+);
+
+// Image Job Items table - individual images within a bulk job
+export const imageJobItems = pgTable(
+  "image_job_items",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    jobId: uuid("job_id")
+      .notNull()
+      .references(() => imageJobs.id, { onDelete: "cascade" }),
+    prompt: text("prompt").notNull(),
+    status: imageJobStatusEnum("status").notNull().default("pending"),
+    imageUrl: text("image_url"),
+    error: text("error"),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
+    updatedAt: timestamp("updated_at")
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (table) => [index("image_job_items_job_id_idx").on(table.jobId)]
+);
+
 // Type exports for use in application
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
@@ -140,3 +190,9 @@ export type NewUsageDaily = typeof usageDaily.$inferInsert;
 
 export type CreditTransaction = typeof creditTransactions.$inferSelect;
 export type NewCreditTransaction = typeof creditTransactions.$inferInsert;
+
+export type ImageJob = typeof imageJobs.$inferSelect;
+export type NewImageJob = typeof imageJobs.$inferInsert;
+
+export type ImageJobItem = typeof imageJobItems.$inferSelect;
+export type NewImageJobItem = typeof imageJobItems.$inferInsert;

@@ -1,15 +1,15 @@
 ---
 title: API Keys
-description: Manage your what-is API keys for server-side integration.
+description: Manage your AI Media Maker API keys for server-side integration.
 ---
 
 # API Keys
 
-Manage your what-is API keys for server-side integration.
+Manage your AI Media Maker API keys for server-side integration.
 
 ## Creating an API Key
 
-1. Sign in at [example.com/login](/login)
+1. Sign in at [maker.cappuai.com/login](/login)
 2. Navigate to [Cloud Console → API Keys](/c/cloud/api-keys)
 3. Click **Add Key**
 4. Enter a descriptive name (e.g., "Production", "Development")
@@ -24,7 +24,7 @@ API keys use the format:
 wi_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-- `wi_live_` - Prefix identifying what-is keys
+- `wi_live_` - Prefix identifying AI Media Maker keys
 - 64 hex characters - Cryptographically random identifier
 
 ## Security
@@ -58,42 +58,51 @@ Authorization: Bearer YOUR_API_KEY
 
 ```bash
 # .env
-WHAT_IS_API_KEY=wi_live_xxxx...
+AI_MEDIA_MAKER_API_KEY=wi_live_xxxx...
 
 # Node.js
-const apiKey = process.env.WHAT_IS_API_KEY;
+const apiKey = process.env.AI_MEDIA_MAKER_API_KEY;
 ```
 
 ## API Endpoints
 
-### Definition Lookup
+### Bulk Image Generation
 
-Look up a definition for any keyword. This endpoint deducts 1 credit from your account.
+Generate images from text prompts. Each image deducts 1 credit from your account.
 
 **Request:**
 
 ```bash
-curl -X POST https://example.com/api/playground/query \
+curl -X POST https://maker.cappuai.com/api/playground/images \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"keyword": "photosynthesis"}'
+  -d '{"prompts": ["A beautiful sunset over the ocean", "A futuristic cityscape"]}'
 ```
 
 **Response:**
 
 ```json
 {
-  "keyword": "photosynthesis",
-  "definition": "The process by which plants convert light energy into chemical energy...",
-  "credits": 2
+  "jobId": "uuid",
+  "totalImages": 2,
+  "creditsUsed": 2,
+  "credits": 4
 }
 ```
 
 | Field | Description |
 |-------|-------------|
-| `keyword` | The keyword that was looked up |
-| `definition` | AI-generated definition |
-| `credits` | Remaining credits after deduction |
+| `jobId` | Job ID to poll for status |
+| `totalImages` | Number of images being generated |
+| `creditsUsed` | Credits deducted |
+| `credits` | Remaining credits |
+
+### Get Job Status
+
+```bash
+curl https://maker.cappuai.com/api/playground/images/{jobId} \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
 
 **Error Responses:**
 

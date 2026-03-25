@@ -5,6 +5,23 @@ import { Footer } from "@/components/Footer";
 import { useState, useEffect, Suspense, FormEvent } from "react";
 import { useUser, SignInButton } from "@clerk/nextjs";
 
+interface ImageJobItem {
+  id: string;
+  prompt: string;
+  status: string;
+  imageUrl: string | null;
+  error: string | null;
+}
+
+interface ImageJob {
+  id: string;
+  totalImages: number;
+  completedImages: number;
+  failedImages: number;
+  status: string;
+  createdAt: string;
+}
+
 export default function PlaygroundPage() {
   return (
     <Suspense fallback={<PlaygroundLoading />}>
@@ -38,15 +55,13 @@ function PlaygroundContent() {
 
   const [credits, setCredits] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
-  const [keyword, setKeyword] = useState("");
-  const [definition, setDefinition] = useState<string | null>(null);
-  const [queryLoading, setQueryLoading] = useState(false);
+  const [prompts, setPrompts] = useState<string[]>([""]);
+  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [history, setHistory] = useState<
-    Array<{ keyword: string; definition: string }>
-  >([]);
+  const [activeJob, setActiveJob] = useState<ImageJob | null>(null);
+  const [activeJobItems, setActiveJobItems] = useState<ImageJobItem[]>([]);
+  const [pollingId, setPollingId] = useState<string | null>(null);
 
-  // Fetch credits when signed in
   useEffect(() => {
     if (!authLoaded) return;
     if (!isSignedIn) {
@@ -62,37 +77,87 @@ function PlaygroundContent() {
       .catch(() => setLoading(false));
   }, [authLoaded, isSignedIn]);
 
+  // Poll active job status
+  useEffect(() => {
+    if (!pollingId) return;
+    const interval = setInterval(async () => {
+      try {
+        const res = await fetch(`/api/playground/images/${pollingId}`);
+        const data = await res.json();
+        if (res.ok) {
+          setActiveJob(data.job);
+          setActiveJobItems(data.items);
+          if (
+            data.job.status === "completed" ||
+            data.job.status === "failed"
+          ) {
+            setPollingId(null);
+          }
+        }
+      } catch {
+        // continue polling
+      }
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [pollingId]);
+
+  const addPrompt = () => {
+    if (prompts.length < 10) {
+      setPrompts([...prompts, ""]);
+    }
+  };
+
+  const removePrompt = (index: number) => {
+    if (prompts.length > 1) {
+      setPrompts(prompts.filter((_, i) => i !== index));
+    }
+  };
+
+  const updatePrompt = (index: number, value: string) => {
+    const updated = [...prompts];
+    updated[index] = value;
+    setPrompts(updated);
+  };
+
+  const validPrompts = prompts.filter((p) => p.trim().length > 0);
+  const creditsRequired = validPrompts.length;
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!keyword.trim() || queryLoading || !isSignedIn) return;
+    if (validPrompts.length === 0 || submitting || !isSignedIn) return;
 
-    setQueryLoading(true);
+    setSubmitting(true);
     setError(null);
-    setDefinition(null);
+    setActiveJob(null);
+    setActiveJobItems([]);
 
     try {
-      const res = await fetch("/api/playground/query", {
+      const res = await fetch("/api/playground/images", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ keyword: keyword.trim() }),
+        body: JSON.stringify({ prompts: validPrompts }),
       });
 
       const data = await res.json();
 
       if (res.ok) {
-        setDefinition(data.definition);
         setCredits(data.credits);
-        setHistory((prev) => [
-          { keyword: data.keyword, definition: data.definition },
-          ...prev.slice(0, 9),
-        ]);
+        setPollingId(data.jobId);
+        setActiveJob({
+          id: data.jobId,
+          totalImages: data.totalImages,
+          completedImages: 0,
+          failedImages: 0,
+          status: "pending",
+          createdAt: new Date().toISOString(),
+        });
       } else {
-        setError(data.error || "Failed to get definition");
+        setError(data.error || "Failed to start image generation");
       }
     } catch {
       setError("Network error. Please try again.");
     } finally {
-      setQueryLoading(false);
+      setSubmitting(false);
     }
   };
 
@@ -116,10 +181,12 @@ function PlaygroundContent() {
 
           <div className="space-y-6">
             <div className="rounded-xl border border-border bg-accent/50 p-8">
-              <h2 className="text-xl font-semibold">AI Definition Lookup</h2>
+              <h2 className="text-xl font-semibold">
+                Bulk Image Generation
+              </h2>
               <p className="mt-2 text-muted-foreground">
-                Enter any keyword to get an AI-powered definition. Uses 1 credit
-                per query.
+                Enter prompts to generate AI images. 1 credit per image, up to
+                10 images per batch.
               </p>
 
               {!authLoaded || loading ? (
@@ -134,7 +201,7 @@ function PlaygroundContent() {
               ) : !isSignedIn ? (
                 <div className="mt-6 text-center">
                   <p className="mb-4 text-muted-foreground">
-                    Sign in to start looking up definitions
+                    Sign in to start generating images
                   </p>
                   <SignInButton mode="modal">
                     <button className="cursor-pointer rounded-lg bg-foreground px-8 py-3 font-medium text-background transition-opacity hover:opacity-90">
@@ -142,45 +209,85 @@ function PlaygroundContent() {
                     </button>
                   </SignInButton>
                 </div>
-              ) : credits === null || credits < 1 ? (
-                <div className="mt-6 text-center">
-                  <p className="text-red-500">
-                    Insufficient credits. Please purchase more.
-                  </p>
-                  <a
-                    href="/c/cloud/billing"
-                    className="mt-4 inline-block rounded-lg bg-foreground px-6 py-3 font-medium text-background"
-                  >
-                    Buy Credits
-                  </a>
-                </div>
               ) : (
-                <form onSubmit={handleSubmit} className="mt-6">
-                  <div className="flex gap-3">
-                    <input
-                      type="text"
-                      value={keyword}
-                      onChange={(e) => setKeyword(e.target.value)}
-                      placeholder="Enter a keyword (e.g., photosynthesis)"
-                      className="flex-1 rounded-lg border border-border bg-background px-4 py-3 outline-none focus:border-foreground"
-                      maxLength={100}
-                      disabled={queryLoading}
-                    />
-                    <button
-                      type="submit"
-                      disabled={queryLoading || !keyword.trim()}
-                      className="flex cursor-pointer items-center gap-2 rounded-lg bg-foreground px-6 py-3 font-medium text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
-                    >
-                      {queryLoading ? (
-                        <>
-                          <div className="h-4 w-4 animate-spin rounded-full border-2 border-background border-t-transparent" />
-                          Looking up...
-                        </>
-                      ) : (
-                        "Define"
-                      )}
-                    </button>
+                <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+                  <div className="space-y-3">
+                    {prompts.map((prompt, index) => (
+                      <div key={index} className="flex gap-2">
+                        <span className="flex h-11 w-8 shrink-0 items-center justify-center text-sm text-muted-foreground">
+                          {index + 1}.
+                        </span>
+                        <input
+                          type="text"
+                          value={prompt}
+                          onChange={(e) => updatePrompt(index, e.target.value)}
+                          placeholder="Describe the image you want to generate..."
+                          className="flex-1 rounded-lg border border-border bg-background px-4 py-3 outline-none focus:border-foreground"
+                          disabled={submitting}
+                        />
+                        {prompts.length > 1 && (
+                          <button
+                            type="button"
+                            onClick={() => removePrompt(index)}
+                            className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:border-red-500 hover:text-red-500"
+                            disabled={submitting}
+                          >
+                            X
+                          </button>
+                        )}
+                      </div>
+                    ))}
                   </div>
+
+                  <div className="flex items-center justify-between">
+                    <button
+                      type="button"
+                      onClick={addPrompt}
+                      disabled={prompts.length >= 10 || submitting}
+                      className="cursor-pointer text-sm text-muted-foreground transition-colors hover:text-foreground disabled:cursor-not-allowed disabled:opacity-50"
+                    >
+                      + Add another prompt ({prompts.length}/10)
+                    </button>
+
+                    <div className="flex items-center gap-4">
+                      {validPrompts.length > 0 && (
+                        <span className="text-sm text-muted-foreground">
+                          {creditsRequired} credit{creditsRequired !== 1 ? "s" : ""} required
+                        </span>
+                      )}
+                      <button
+                        type="submit"
+                        disabled={
+                          submitting ||
+                          validPrompts.length === 0 ||
+                          (credits !== null && credits < creditsRequired)
+                        }
+                        className="flex cursor-pointer items-center gap-2 rounded-lg bg-foreground px-6 py-3 font-medium text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+                      >
+                        {submitting ? (
+                          <>
+                            <div className="h-4 w-4 animate-spin rounded-full border-2 border-background border-t-transparent" />
+                            Submitting...
+                          </>
+                        ) : (
+                          "Generate Images"
+                        )}
+                      </button>
+                    </div>
+                  </div>
+
+                  {credits !== null && credits < creditsRequired && validPrompts.length > 0 && (
+                    <p className="text-sm text-red-500">
+                      Insufficient credits. You need {creditsRequired} but have{" "}
+                      {credits}.{" "}
+                      <a
+                        href="/c/cloud/billing"
+                        className="underline hover:no-underline"
+                      >
+                        Buy more credits
+                      </a>
+                    </p>
+                  )}
                 </form>
               )}
 
@@ -189,55 +296,89 @@ function PlaygroundContent() {
                   {error}
                 </div>
               )}
-
-              {definition && (
-                <div className="mt-6 rounded-lg border border-border bg-background p-6">
-                  <h3 className="text-lg font-semibold capitalize">
-                    {keyword}
-                  </h3>
-                  <p className="mt-2 text-muted-foreground">{definition}</p>
-                </div>
-              )}
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-3">
-              <div className="rounded-lg border border-border p-4">
-                <h3 className="font-semibold">AI-Powered</h3>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  Get accurate definitions using advanced language models
-                </p>
-              </div>
-              <div className="rounded-lg border border-border p-4">
-                <h3 className="font-semibold">Instant Results</h3>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  Definitions generated in seconds
-                </p>
-              </div>
-              <div className="rounded-lg border border-border p-4">
-                <h3 className="font-semibold">Any Topic</h3>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  From science to art, get definitions for any keyword
-                </p>
-              </div>
-            </div>
-
-            {history.length > 0 && (
+            {activeJob && (
               <div className="rounded-xl border border-border p-6">
-                <h3 className="mb-4 font-semibold">Recent Lookups</h3>
-                <div className="space-y-3">
-                  {history.map((item, i) => (
-                    <div key={i} className="rounded-lg bg-accent/50 p-4">
-                      <span className="font-medium capitalize">
-                        {item.keyword}:
-                      </span>{" "}
-                      <span className="text-muted-foreground">
-                        {item.definition}
-                      </span>
+                <div className="mb-4 flex items-center justify-between">
+                  <h3 className="font-semibold">
+                    Job Status:{" "}
+                    <span className="capitalize">{activeJob.status}</span>
+                  </h3>
+                  <span className="text-sm text-muted-foreground">
+                    {activeJob.completedImages + activeJob.failedImages}/
+                    {activeJob.totalImages} processed
+                  </span>
+                </div>
+
+                <div className="mb-4 h-2 overflow-hidden rounded-full bg-muted">
+                  <div
+                    className="h-full rounded-full bg-foreground transition-all"
+                    style={{
+                      width: `${((activeJob.completedImages + activeJob.failedImages) / activeJob.totalImages) * 100}%`,
+                    }}
+                  />
+                </div>
+
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {activeJobItems.map((item) => (
+                    <div
+                      key={item.id}
+                      className="overflow-hidden rounded-lg border border-border"
+                    >
+                      {item.status === "completed" && item.imageUrl ? (
+                        <img
+                          src={item.imageUrl}
+                          alt={item.prompt}
+                          className="aspect-square w-full object-cover"
+                        />
+                      ) : (
+                        <div className="flex aspect-square items-center justify-center bg-accent/50">
+                          {item.status === "failed" ? (
+                            <span className="px-4 text-center text-sm text-red-500">
+                              Failed: {item.error}
+                            </span>
+                          ) : (
+                            <div className="flex flex-col items-center gap-2">
+                              <div className="h-6 w-6 animate-spin rounded-full border-3 border-muted border-t-foreground" />
+                              <span className="text-xs text-muted-foreground capitalize">
+                                {item.status}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                      <div className="p-3">
+                        <p className="line-clamp-2 text-sm text-muted-foreground">
+                          {item.prompt}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
               </div>
             )}
+
+            <div className="grid gap-4 sm:grid-cols-3">
+              <div className="rounded-lg border border-border p-4">
+                <h3 className="font-semibold">AI-Powered</h3>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Generate high-quality images using advanced AI models
+                </p>
+              </div>
+              <div className="rounded-lg border border-border p-4">
+                <h3 className="font-semibold">Bulk Generation</h3>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Generate up to 10 images at once with different prompts
+                </p>
+              </div>
+              <div className="rounded-lg border border-border p-4">
+                <h3 className="font-semibold">Cloud Storage</h3>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Images stored securely and available for download
+                </p>
+              </div>
+            </div>
           </div>
         </section>
       </main>
