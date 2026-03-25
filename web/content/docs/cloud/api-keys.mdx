@@ -1,0 +1,131 @@
+---
+title: API Keys
+description: Manage your what-is API keys for server-side integration.
+---
+
+# API Keys
+
+Manage your what-is API keys for server-side integration.
+
+## Creating an API Key
+
+1. Sign in at [example.com/login](/login)
+2. Navigate to [Cloud Console → API Keys](/c/cloud/api-keys)
+3. Click **Add Key**
+4. Enter a descriptive name (e.g., "Production", "Development")
+5. Click **Create Key**
+6. **Copy your key immediately** - you won't be able to see it again
+
+## Key Format
+
+API keys use the format:
+
+```
+wi_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+- `wi_live_` - Prefix identifying what-is keys
+- 64 hex characters - Cryptographically random identifier
+
+## Security
+
+### Hashed Storage
+
+For your security, we only store a SHA-256 hash of your API key. This means:
+
+- We cannot retrieve your key if you lose it
+- Even if our database is compromised, your keys are safe
+- You must copy the key when it's first displayed
+
+### Best Practices
+
+- **Never commit keys to git** - Use environment variables
+- **Use different keys** for development and production
+- **Rotate keys periodically** - Delete old keys and create new ones
+- **Delete unused keys** - Reduce attack surface
+
+## Using Your API Key
+
+### HTTP Header (Recommended)
+
+Include your API key in the `Authorization` header with the `Bearer` prefix:
+
+```bash
+Authorization: Bearer YOUR_API_KEY
+```
+
+### Environment Variables
+
+```bash
+# .env
+WHAT_IS_API_KEY=wi_live_xxxx...
+
+# Node.js
+const apiKey = process.env.WHAT_IS_API_KEY;
+```
+
+## API Endpoints
+
+### Definition Lookup
+
+Look up a definition for any keyword. This endpoint deducts 1 credit from your account.
+
+**Request:**
+
+```bash
+curl -X POST https://example.com/api/playground/query \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"keyword": "photosynthesis"}'
+```
+
+**Response:**
+
+```json
+{
+  "keyword": "photosynthesis",
+  "definition": "The process by which plants convert light energy into chemical energy...",
+  "credits": 2
+}
+```
+
+| Field | Description |
+|-------|-------------|
+| `keyword` | The keyword that was looked up |
+| `definition` | AI-generated definition |
+| `credits` | Remaining credits after deduction |
+
+**Error Responses:**
+
+| Status | Error | Description |
+|--------|-------|-------------|
+| 401 | `Missing or invalid Authorization header` | API key not provided |
+| 401 | `Invalid API key format` | Key doesn't match expected format |
+| 401 | `Invalid API key` | Key not found or deleted |
+| 402 | `Insufficient credits` | No credits remaining |
+
+## Managing Keys
+
+### View Keys
+
+Go to [API Keys](/c/cloud/api-keys) to see all your keys with:
+- Key name
+- Key prefix (first 12 characters)
+- Last used date
+- Created date
+
+### Delete Keys
+
+Click **Delete** next to any key to revoke it immediately. Deleted keys:
+- Cannot be used for new requests
+- Are soft-deleted for audit compliance
+- Cannot be recovered
+
+## Audit Logging
+
+All key operations are logged for security:
+- Key creation (with IP address)
+- Key deletion (with IP address)
+- Key usage (last used timestamp)
+
+These logs are available for 90 days and can be requested for compliance purposes.

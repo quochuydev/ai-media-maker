@@ -1,0 +1,40 @@
+---
+title: Sample Project 1
+description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+---
+
+# Sample Project 1
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+## Overview
+
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+## Demo
+
+See the live demo at [example.com/playground](/playground).
+
+## How It Works
+
+1. **Lorem Ipsum** - Dolor sit amet consectetur adipiscing elit
+2. **Sed Do** - Eiusmod tempor incididunt ut labore
+3. **Ut Enim** - Ad minim veniam quis nostrud
+
+## Code Example
+
+```javascript
+import { WhatIs } from '@what-is/sdk';
+
+const client = new WhatIs({
+  apiKey: process.env.WHAT_IS_API_KEY
+});
+
+const result = await client.define('photosynthesis');
+console.log(result.definition);
+```
+
+## Resources
+
+- [Source Code](https://github.com/quochuydev/what-is-samples)
+- [Video Tutorial](/docs/samples/video-introduction)
