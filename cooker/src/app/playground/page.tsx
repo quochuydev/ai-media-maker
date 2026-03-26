@@ -204,7 +204,7 @@ function PlaygroundContent() {
                     Sign in to start generating images
                   </p>
                   <SignInButton mode="modal">
-                    <button className="cursor-pointer rounded-lg bg-foreground px-8 py-3 font-medium text-background transition-opacity hover:opacity-90">
+                    <button className="cursor-pointer rounded-lg bg-primary px-8 py-3 font-medium text-primary-foreground transition-opacity hover:opacity-90">
                       Sign In to Start
                     </button>
                   </SignInButton>
@@ -229,7 +229,7 @@ function PlaygroundContent() {
                           <button
                             type="button"
                             onClick={() => removePrompt(index)}
-                            className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:border-red-500 hover:text-red-500"
+                            className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:border-destructive hover:text-destructive"
                             disabled={submitting}
                           >
                             X
@@ -262,7 +262,7 @@ function PlaygroundContent() {
                           validPrompts.length === 0 ||
                           (credits !== null && credits < creditsRequired)
                         }
-                        className="flex cursor-pointer items-center gap-2 rounded-lg bg-foreground px-6 py-3 font-medium text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+                        className="flex cursor-pointer items-center gap-2 rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
                       >
                         {submitting ? (
                           <>
@@ -277,7 +277,7 @@ function PlaygroundContent() {
                   </div>
 
                   {credits !== null && credits < creditsRequired && validPrompts.length > 0 && (
-                    <p className="text-sm text-red-500">
+                    <p className="text-sm text-destructive">
                       Insufficient credits. You need {creditsRequired} but have{" "}
                       {credits}.{" "}
                       <a
@@ -292,7 +292,7 @@ function PlaygroundContent() {
               )}
 
               {error && (
-                <div className="mt-4 rounded-lg bg-red-500/10 p-4 text-red-500">
+                <div className="mt-4 rounded-lg bg-destructive/10 p-4 text-destructive">
                   {error}
                 </div>
               )}
@@ -313,7 +313,7 @@ function PlaygroundContent() {
 
                 <div className="mb-4 h-2 overflow-hidden rounded-full bg-muted">
                   <div
-                    className="h-full rounded-full bg-foreground transition-all"
+                    className="h-full rounded-full bg-primary transition-all"
                     style={{
                       width: `${((activeJob.completedImages + activeJob.failedImages) / activeJob.totalImages) * 100}%`,
                     }}
@@ -335,7 +335,7 @@ function PlaygroundContent() {
                       ) : (
                         <div className="flex aspect-square items-center justify-center bg-accent/50">
                           {item.status === "failed" ? (
-                            <span className="px-4 text-center text-sm text-red-500">
+                            <span className="px-4 text-center text-sm text-destructive">
                               Failed: {item.error}
                             </span>
                           ) : (

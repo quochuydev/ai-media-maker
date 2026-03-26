@@ -35,7 +35,7 @@ export default function DashboardLayout({
                     href={item.href}
                     className={`block rounded-lg px-3 py-2 text-sm transition-colors ${
                       pathname === item.href
-                        ? "bg-foreground text-background"
+                        ? "bg-primary text-primary-foreground"
                         : "hover:bg-accent"
                     }`}
                   >

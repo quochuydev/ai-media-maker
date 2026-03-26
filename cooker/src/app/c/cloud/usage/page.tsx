@@ -68,7 +68,7 @@ export default function UsagePage() {
   if (error || !usage) {
     return (
       <div className="flex h-64 items-center justify-center">
-        <div className="text-red-500">{error || "Failed to load data"}</div>
+        <div className="text-destructive">{error || "Failed to load data"}</div>
       </div>
     );
   }

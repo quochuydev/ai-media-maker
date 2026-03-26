@@ -1,14 +1,21 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { RootProvider } from "fumadocs-ui/provider/next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins, Lora, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import { config } from "@/lib/config";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const lora = Lora({
+  variable: "--font-lora",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -114,7 +121,7 @@ export default function RootLayout({
           </Script>
         </head>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${poppins.variable} ${lora.variable} ${geistMono.variable} antialiased`}
         >
           <RootProvider>{children}</RootProvider>
         </body>

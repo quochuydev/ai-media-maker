@@ -109,14 +109,14 @@ export default function ApiKeysPage() {
         <h1 className="text-2xl font-bold">API Keys</h1>
         <button
           onClick={() => setShowAddModal(true)}
-          className="rounded-lg bg-foreground px-4 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90"
+          className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
         >
           Add Key
         </button>
       </div>
 
       {error && (
-        <div className="mb-4 rounded-lg bg-red-500/10 p-3 text-sm text-red-500">
+        <div className="mb-4 rounded-lg bg-destructive/10 p-3 text-sm text-destructive">
           {error}
           <button onClick={() => setError(null)} className="ml-2 underline">
             Dismiss
@@ -159,7 +159,7 @@ export default function ApiKeysPage() {
                   <td className="px-4 py-3 text-right">
                     <button
                       onClick={() => handleDeleteKey(apiKey.id)}
-                      className="text-sm text-red-500 hover:underline"
+                      className="text-sm text-destructive hover:underline"
                     >
                       Delete
                     </button>
@@ -198,7 +198,7 @@ export default function ApiKeysPage() {
               <button
                 onClick={handleAddKey}
                 disabled={creating || !newKeyName.trim()}
-                className="flex-1 rounded-lg bg-foreground py-2 text-sm font-medium text-background transition-opacity hover:opacity-90 disabled:opacity-50"
+                className="flex-1 rounded-lg bg-primary py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50"
               >
                 {creating ? "Creating..." : "Create Key"}
               </button>
@@ -231,7 +231,7 @@ export default function ApiKeysPage() {
                 setNewlyCreatedKey(null);
                 setShowAddModal(false);
               }}
-              className="w-full rounded-lg bg-foreground py-2 text-sm font-medium text-background transition-opacity hover:opacity-90"
+              className="w-full rounded-lg bg-primary py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
             >
               Done
             </button>

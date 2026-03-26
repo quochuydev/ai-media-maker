@@ -22,8 +22,8 @@ export default async function Image() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%)",
-          fontFamily: "system-ui, sans-serif",
+          background: "linear-gradient(135deg, #141413 0%, #1e1e1c 100%)",
+          fontFamily: "Poppins, Arial, sans-serif",
         }}
       >
         <div
@@ -37,7 +37,7 @@ export default async function Image() {
             style={{
               fontSize: 72,
               fontWeight: "bold",
-              color: "white",
+              color: "#faf9f5",
               margin: 0,
               marginBottom: 16,
             }}
@@ -47,7 +47,7 @@ export default async function Image() {
           <p
             style={{
               fontSize: 32,
-              color: "#888",
+              color: "#b0aea5",
               margin: 0,
               marginBottom: 40,
             }}
@@ -59,7 +59,7 @@ export default async function Image() {
               width: 400,
               height: 4,
               borderRadius: 2,
-              background: "linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%)",
+              background: "linear-gradient(90deg, #d97757 0%, #6a9bcc 100%)",
             }}
           />
         </div>

@@ -104,7 +104,7 @@ function BillingContent() {
   if (error || !billing) {
     return (
       <div className="flex h-64 items-center justify-center">
-        <div className="text-red-500">{error || "Failed to load data"}</div>
+        <div className="text-destructive">{error || "Failed to load data"}</div>
       </div>
     );
   }
@@ -114,7 +114,7 @@ function BillingContent() {
       <h1 className="mb-6 text-2xl font-bold">Billing & Credits</h1>
 
       {showSuccess && (
-        <div className="mb-6 rounded-lg bg-green-500/10 p-4 text-green-600">
+        <div className="mb-6 rounded-lg bg-success/10 p-4 text-success">
           Payment successful! Your credits have been added to your account.
           <button
             onClick={() => setShowSuccess(false)}
@@ -141,7 +141,7 @@ function BillingContent() {
           {billing.packages.map((pkg) => (
             <div
               key={pkg.id}
-              className="rounded-xl border border-border p-6 transition-colors hover:border-foreground"
+              className="rounded-xl border border-border p-6 transition-colors hover:border-primary"
             >
               <div className="text-2xl font-bold">
                 {pkg.credits.toLocaleString()}
@@ -153,7 +153,7 @@ function BillingContent() {
               <button
                 onClick={() => handlePurchase(pkg.id)}
                 disabled={purchasing === pkg.id}
-                className="mt-4 w-full cursor-pointer rounded-lg bg-foreground py-2 text-sm font-medium text-background transition-opacity hover:opacity-90 disabled:opacity-50"
+                className="mt-4 w-full cursor-pointer rounded-lg bg-primary py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50"
               >
                 {purchasing === pkg.id ? "Redirecting..." : "Buy Now"}
               </button>
@@ -196,10 +196,10 @@ function BillingContent() {
                     <span
                       className={`rounded-full px-2 py-1 text-xs ${
                         tx.type === "purchase"
-                          ? "bg-green-500/10 text-green-500"
+                          ? "bg-success/10 text-success"
                           : tx.type === "usage"
-                            ? "bg-blue-500/10 text-blue-500"
-                            : "bg-gray-500/10 text-gray-500"
+                            ? "bg-info/10 text-info"
+                            : "bg-accent text-muted-foreground"
                       }`}
                     >
                       {tx.type}
@@ -207,7 +207,7 @@ function BillingContent() {
                   </td>
                   <td
                     className={`px-4 py-3 text-right text-sm font-medium ${
-                      tx.amount > 0 ? "text-green-500" : "text-red-500"
+                      tx.amount > 0 ? "text-success" : "text-destructive"
                     }`}
                   >
                     {tx.amount > 0 ? "+" : ""}

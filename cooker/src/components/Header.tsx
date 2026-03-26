@@ -46,7 +46,7 @@ export function Header() {
         <div className="flex items-center gap-3">
           <SignedOut>
             <SignInButton mode="modal">
-              <button className="rounded-md bg-foreground px-4 py-1.5 text-sm font-medium text-background transition-opacity hover:opacity-90">
+              <button className="rounded-md bg-primary px-4 py-1.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90">
                 Sign In
               </button>
             </SignInButton>

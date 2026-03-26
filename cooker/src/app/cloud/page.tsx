@@ -19,7 +19,7 @@ export default function CloudLandingPage() {
           <div className="mt-10">
             <Link
               href="/c/cloud/api-keys"
-              className="inline-flex h-12 items-center justify-center rounded-md bg-foreground px-8 text-sm font-medium text-background transition-opacity hover:opacity-90"
+              className="inline-flex h-12 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
             >
               Get Started
             </Link>
@@ -31,7 +31,7 @@ export default function CloudLandingPage() {
           <div className="mx-auto max-w-[1080px] px-4 py-16">
             <div className="grid gap-8 md:grid-cols-3">
               <div className="text-center">
-                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-foreground text-xl text-background">
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-xl text-primary-foreground">
                   &#9889;
                 </div>
                 <h3 className="font-semibold">Lightning Fast</h3>
@@ -41,7 +41,7 @@ export default function CloudLandingPage() {
                 </p>
               </div>
               <div className="text-center">
-                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-foreground text-xl text-background">
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-xl text-primary-foreground">
                   &#128272;
                 </div>
                 <h3 className="font-semibold">Secure by Default</h3>
@@ -51,7 +51,7 @@ export default function CloudLandingPage() {
                 </p>
               </div>
               <div className="text-center">
-                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-foreground text-xl text-background">
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-xl text-primary-foreground">
                   &#128200;
                 </div>
                 <h3 className="font-semibold">Scale Effortlessly</h3>

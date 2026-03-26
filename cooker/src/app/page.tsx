@@ -5,11 +5,11 @@ import { config } from "@/lib/config";
 
 // Placeholder images for the carousel (970x700 aspect ratio)
 const carouselImages = [
-  "https://placehold.co/970x700/1a1a2e/ffffff?text=AI+Images",
-  "https://placehold.co/970x700/16213e/ffffff?text=Bulk+Generation",
-  "https://placehold.co/970x700/0f3460/ffffff?text=Text+to+Image",
-  "https://placehold.co/970x700/533483/ffffff?text=Cloud+Storage",
-  "https://placehold.co/970x700/3b82f6/ffffff?text=Developer+API",
+  "https://placehold.co/970x700/141413/faf9f5?text=AI+Images",
+  "https://placehold.co/970x700/d97757/faf9f5?text=Bulk+Generation",
+  "https://placehold.co/970x700/6a9bcc/faf9f5?text=Text+to+Image",
+  "https://placehold.co/970x700/788c5d/faf9f5?text=Cloud+Storage",
+  "https://placehold.co/970x700/141413/d97757?text=Developer+API",
 ];
 
 export default function Home() {
@@ -30,7 +30,7 @@ export default function Home() {
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
               href="/playground"
-              className="inline-flex h-12 items-center justify-center rounded-md bg-foreground px-8 text-sm font-medium text-background transition-opacity hover:opacity-90"
+              className="inline-flex h-12 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
             >
               Try Demo
             </a>
@@ -98,7 +98,7 @@ export default function Home() {
 
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             <div className="rounded-xl border border-border p-6 transition-colors hover:bg-accent">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-foreground text-xl text-background">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-xl text-primary-foreground">
                 <span role="img" aria-hidden>
                   &#129504;
                 </span>
@@ -111,7 +111,7 @@ export default function Home() {
             </div>
 
             <div className="rounded-xl border border-border p-6 transition-colors hover:bg-accent">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-foreground text-xl text-background">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-xl text-primary-foreground">
                 <span role="img" aria-hidden>
                   &#9889;
                 </span>
@@ -124,7 +124,7 @@ export default function Home() {
             </div>
 
             <div className="rounded-xl border border-border p-6 transition-colors hover:bg-accent">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-foreground text-xl text-background">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-xl text-primary-foreground">
                 <span role="img" aria-hidden>
                   &#128736;
                 </span>
@@ -137,7 +137,7 @@ export default function Home() {
             </div>
 
             <div className="rounded-xl border border-border p-6 transition-colors hover:bg-accent">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-foreground text-xl text-background">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-xl text-primary-foreground">
                 <span role="img" aria-hidden>
                   &#127757;
                 </span>
@@ -150,7 +150,7 @@ export default function Home() {
             </div>
 
             <div className="rounded-xl border border-border p-6 transition-colors hover:bg-accent">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-foreground text-xl text-background">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-xl text-primary-foreground">
                 <span role="img" aria-hidden>
                   &#128274;
                 </span>
@@ -163,7 +163,7 @@ export default function Home() {
             </div>
 
             <div className="rounded-xl border border-border p-6 transition-colors hover:bg-accent">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-foreground text-xl text-background">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-xl text-primary-foreground">
                 <span role="img" aria-hidden>
                   &#128640;
                 </span>
@@ -190,7 +190,7 @@ export default function Home() {
             <div className="mt-8">
               <a
                 href="/playground"
-                className="inline-flex h-12 items-center justify-center rounded-md bg-foreground px-8 text-sm font-medium text-background transition-opacity hover:opacity-90"
+                className="inline-flex h-12 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
               >
                 Try Playground
               </a>

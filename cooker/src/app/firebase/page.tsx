@@ -112,7 +112,7 @@ export default function FirebasePage() {
               <button
                 onClick={getDeviceToken}
                 disabled={tokenLoading}
-                className="mt-4 cursor-pointer rounded-lg bg-foreground px-6 py-3 font-medium text-background transition-opacity hover:opacity-90 disabled:opacity-60"
+                className="mt-4 cursor-pointer rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
               >
                 {tokenLoading ? "Requesting..." : "Get Device Token"}
               </button>
@@ -165,7 +165,7 @@ export default function FirebasePage() {
                 <button
                   onClick={sendTest}
                   disabled={loading || !token.trim()}
-                  className="cursor-pointer rounded-lg bg-foreground px-6 py-3 font-medium text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="cursor-pointer rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {loading ? "Sending..." : "Send Test Notification"}
                 </button>
@@ -176,8 +176,8 @@ export default function FirebasePage() {
               <div
                 className={`rounded-lg p-4 ${
                   status.startsWith("Error") || status.startsWith("Network")
-                    ? "bg-red-500/10 text-red-500"
-                    : "bg-green-500/10 text-green-600"
+                    ? "bg-destructive/10 text-destructive"
+                    : "bg-success/10 text-success"
                 }`}
               >
                 {status}

@@ -51,7 +51,7 @@ export default function PricingPage() {
                 key={pkg.name}
                 className={`rounded-2xl border p-8 ${
                   pkg.highlighted
-                    ? "border-foreground bg-accent"
+                    ? "border-primary bg-accent"
                     : "border-border"
                 }`}
               >
@@ -82,7 +82,7 @@ export default function PricingPage() {
                   href="/login?redirectTo=/c/cloud/billing"
                   className={`mt-8 block w-full cursor-pointer rounded-lg py-3 text-center font-medium transition-opacity hover:opacity-90 ${
                     pkg.highlighted
-                      ? "bg-foreground text-background"
+                      ? "bg-primary text-primary-foreground"
                       : "border border-border hover:bg-accent"
                   }`}
                 >
